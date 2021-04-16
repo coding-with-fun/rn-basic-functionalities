@@ -7,10 +7,10 @@ import {
 } from "react-native";
 import { Button, Image, Input } from "react-native-elements";
 
-const SignInScreen = ({ navigation }) => {
+const SignUpScreen = ({ navigation }) => {
     const ref_input2 = useRef();
 
-    const handleSignIn = () => {
+    const handleSignUp = () => {
         navigation.replace("Home");
     };
 
@@ -36,22 +36,22 @@ const SignInScreen = ({ navigation }) => {
                         <Input
                             placeholder="Password"
                             ref={ref_input2}
-                            onSubmitEditing={() => handleSignIn()}
+                            onSubmitEditing={() => handleSignUp()}
                         />
                     </View>
 
                     <View style={styles.buttonContainer}>
                         <Button
-                            title="Sign In"
-                            type="outline"
-                            buttonStyle={styles.button}
-                            onPress={() => handleSignIn()}
-                        />
-                        <Button
                             title="Sign Up"
                             type="outline"
                             buttonStyle={styles.button}
-                            onPress={() => navigation.navigate("Sign Up")}
+                            onPress={() => handleSignUp()}
+                        />
+                        <Button
+                            title="Sign In"
+                            type="outline"
+                            buttonStyle={styles.button}
+                            onPress={() => navigation.navigate("Sign In")}
                         />
                     </View>
                 </View>
@@ -60,7 +60,7 @@ const SignInScreen = ({ navigation }) => {
     );
 };
 
-export default SignInScreen;
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
     container: {
