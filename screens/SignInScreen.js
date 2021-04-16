@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
     KeyboardAvoidingView,
     ScrollView,
@@ -8,9 +8,16 @@ import {
 import { Button, Image, Input } from "react-native-elements";
 
 const SignInScreen = () => {
+    const ref_input2 = useRef();
+
+    const handleSignIn = () => {
+        console.log("object");
+        alert("Hello");
+    };
+
     return (
         <KeyboardAvoidingView style={styles.container}>
-            <ScrollView>
+            <ScrollView keyboardShouldPersistTaps={"handled"}>
                 <View style={styles.bodyContainer}>
                     <Image
                         style={styles.image}
@@ -21,8 +28,17 @@ const SignInScreen = () => {
                     />
 
                     <View style={styles.inputContainer}>
-                        <Input placeholder="Email" autoFocus />
-                        <Input placeholder="Password" />
+                        <Input
+                            placeholder="Email"
+                            autoFocus
+                            returnKeyType="next"
+                            onSubmitEditing={() => ref_input2.current.focus()}
+                        />
+                        <Input
+                            placeholder="Password"
+                            ref={ref_input2}
+                            onSubmitEditing={() => handleSignIn()}
+                        />
                     </View>
 
                     <View style={styles.buttonContainer}>
@@ -30,10 +46,10 @@ const SignInScreen = () => {
                             title="Sign In"
                             type="outline"
                             buttonStyle={styles.button}
+                            onPress={() => handleSignIn()}
                         />
                         <Button
                             title="Sign Up"
-                            loading
                             type="outline"
                             buttonStyle={styles.button}
                         />
@@ -49,13 +65,11 @@ export default SignInScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "#ffffff",
         alignItems: "center",
-        justifyContent: "center",
     },
     bodyContainer: {
-        flex: 1,
-        backgroundColor: "#fff",
+        height: "100%",
         alignItems: "center",
         justifyContent: "center",
         marginBottom: 20,
@@ -72,10 +86,11 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
         width: 260,
-        flexDirection: "row",
+        // flexDirection: "row",
         justifyContent: "space-evenly",
+        alignItems: "center",
     },
     button: {
-        width: 80,
+        width: 130,
     },
 });
