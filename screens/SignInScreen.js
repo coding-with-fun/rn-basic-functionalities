@@ -14,6 +14,10 @@ const SignInScreen = ({ navigation }) => {
         navigation.replace("Home");
     };
 
+    const handleTextChange = (text) => {
+        console.log(text);
+    };
+
     return (
         <KeyboardAvoidingView style={styles.container}>
             <ScrollView keyboardShouldPersistTaps={"handled"}>
@@ -29,13 +33,24 @@ const SignInScreen = ({ navigation }) => {
                     <View style={styles.inputContainer}>
                         <Input
                             placeholder="Email"
+                            name="email"
                             autoFocus
+                            keyboardType="email-address"
+                            autoCompleteType="email"
+                            textContentType="emailAddress"
+                            autoCapitalize="none"
                             returnKeyType="next"
                             onSubmitEditing={() => ref_input2.current.focus()}
+                            onChangeText={(text) => handleTextChange(text)}
                         />
                         <Input
                             placeholder="Password"
+                            secureTextEntry
+                            autoCompleteType="password"
+                            textContentType="password"
+                            autoCapitalize="none"
                             ref={ref_input2}
+                            onChangeText={(text) => handleTextChange(text)}
                             onSubmitEditing={() => handleSignIn()}
                         />
                     </View>
@@ -51,7 +66,7 @@ const SignInScreen = ({ navigation }) => {
                             title="Sign Up"
                             type="outline"
                             buttonStyle={styles.button}
-                            onPress={() => navigation.navigate("Sign Up")}
+                            onPress={() => navigation.replace("Sign Up")}
                         />
                     </View>
                 </View>
