@@ -14,8 +14,8 @@ const SignInScreen = ({ navigation }) => {
         navigation.replace("Home");
     };
 
-    const handleTextChange = (text) => {
-        console.log(text);
+    const handleTextChange = (text, id) => {
+        console.log(text, id);
     };
 
     return (
@@ -41,7 +41,9 @@ const SignInScreen = ({ navigation }) => {
                             autoCapitalize="none"
                             returnKeyType="next"
                             onSubmitEditing={() => ref_input2.current.focus()}
-                            onChangeText={(text) => handleTextChange(text)}
+                            onChangeText={(text) =>
+                                handleTextChange(text, "email")
+                            }
                         />
                         <Input
                             placeholder="Password"
@@ -50,7 +52,9 @@ const SignInScreen = ({ navigation }) => {
                             textContentType="password"
                             autoCapitalize="none"
                             ref={ref_input2}
-                            onChangeText={(text) => handleTextChange(text)}
+                            onChangeText={(text) =>
+                                handleTextChange(text, "password")
+                            }
                             onSubmitEditing={() => handleSignIn()}
                         />
                     </View>
